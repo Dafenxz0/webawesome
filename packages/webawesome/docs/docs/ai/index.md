@@ -15,7 +15,10 @@ We provide two formats for giving AI tools context about Web Awesome. Both forma
   <section class="search-list-grid" style="grid-template-columns: repeat(2, 1fr);">
     <a class="hover-grow hover-emphasize-border" href="/docs/ai/agent-skills">
       <wa-card>
-        <span class="page-name">Agent Skills <wa-badge variant="brand" appearance="accent" pill>Recommended</wa-badge></span>
+        <div class="wa-split">
+          <span class="page-name">Agent Skills</span>
+          <wa-badge variant="brand" appearance="accent" pill>Recommended</wa-badge>
+        </div>
         <p class="modern-card-summary">A structured directory of markdown files that AI tools load progressively, fetching only the documentation relevant to the current task. The best option for tools that support it, such as Claude Code.</p>
       </wa-card>
     </a>
