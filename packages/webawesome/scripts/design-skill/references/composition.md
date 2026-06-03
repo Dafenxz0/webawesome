@@ -121,19 +121,38 @@ text need none.
 **Icon library.** By default, `<wa-icon>` draws from **Font Awesome Free**. Most common UI needs
 (arrows, common actions, social, etc.) are covered. Use any [Font Awesome Free icon name](https://fontawesome.com/search?o=r&m=free).
 
+**Picking the right icon.** If your tool has access to Font Awesome's official agent skills
+(`icons:suggest-icon`, `icons:add-icon` from the Font Awesome team), prefer those over guessing
+an icon name. `icons:suggest-icon` returns a recommendation for a concept, verb, or noun — pass
+the result to `<wa-icon name="…">`. That picks icons by intent rather than by keyword match, which
+is usually how guessing goes wrong. Both skills work with the Free library by default; with a Pro
+kit code (below), they also surface Pro icons.
+
 **Font Awesome Pro / Pro+.** Only if the user explicitly says they have Font Awesome Pro, you can
 unlock the Pro and Pro+ icon families (`thin`, `light`, `sharp`, `duotone`, etc.) by setting their
-kit code. Do **not** add a kit code otherwise.
+kit code. Do **not** add a kit code otherwise. Use any **one** of these:
+
+Option 1 — the `data-fa-kit-code` attribute on `<html>` (mirrors the theme/palette classes):
 
 ```html
-<!-- Option 1: the data-fa-kit-code attribute on the loader script -->
-<script src="webawesome.loader.js" data-fa-kit-code="YOUR_KIT_CODE_HERE"></script>
+<html class="wa-theme-default wa-palette-default wa-light" data-fa-kit-code="YOUR_KIT_CODE_HERE"></html>
+```
 
-<!-- Option 2: the setKitCode() method -->
-<script type="module">
-  import { setKitCode } from 'webawesome.loader.js';
-  setKitCode('YOUR_KIT_CODE_HERE');
-</script>
+Option 2 — the same attribute on the loader script (the canonical CDN URL is
+`https://ka-f.webawesome.com/webawesome@<version>/dist/webawesome.loader.js`; substitute your
+loader's actual URL or path):
+
+```html
+<script src="…/webawesome.loader.js" data-fa-kit-code="YOUR_KIT_CODE_HERE"></script>
+```
+
+Option 3 — the `setKitCode()` method. Import from the npm package, or from the CDN loader URL:
+
+```js
+// npm
+import { setKitCode } from '@awesome.me/webawesome';
+// or CDN: import { setKitCode } from 'https://ka-f.webawesome.com/webawesome@<version>/dist/webawesome.loader.js';
+setKitCode('YOUR_KIT_CODE_HERE');
 ```
 
 Once a kit code is set, select a Pro family with the `variant` attribute, e.g.
